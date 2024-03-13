@@ -1,6 +1,6 @@
 # ROS2_Based_Control_System_for_ Managing_Three_Thermostats
  
-The Requirements for this project are stated below:
+The Requirements for this project and step involved in building one are stated below:
 
 1. Generate a random temperature (between 0°C and 40°C) and store this value in your class as the current temperature. Temperatures should be represented as integer values.
 2. Publish the randomly generated temperature data to topic temperature at a frequency of 3 Hz.
@@ -16,7 +16,7 @@ Parameter target_temperature : The target temperature for the thermostat to reac
 + Default value: 30 (representing a target temperature of 30°C)
 
 1. Store these parameters in FILE-ALT config/params.yaml (create FILE-ALT params.yaml )
-2. Edit FILE-ALT rwa2.launch.py : Get the path to the parameter file. Pass the path to the node object.
+2. Edit FILE rwa2.launch.py : Get the path to the parameter file. Pass the path to the node object.
 3. In your program, declare, retrieve, and store these parameters.
 4. Check everything is working with TERMINAL ros2 launch You can either modify your program to display the parameter values or use TERMINAL ros2 param get (recommended)
 
@@ -25,7 +25,7 @@ The CLI argument mode can be used to set the thermostat to different modes:
 + eco – When used, it reduces the target temperature by 3 degrees to save energy.
 + night – When used, it automatically adjusts the target temperature to a preset comfortable sleeping temperature at night (18°C)
 
-1. Edit FILE-ALT rwa2.launch.py to incorporate the argument mode
+1. Edit FILE rwa2.launch.py to incorporate the argument mode
 2. Modify your program to incorporate this argument:
 + When in away mode, the publisher stops publishing.
 + In eco mode, the target temperature decreases by 3 degrees. Adjust the current temperature up or down by 1 degree and continue publishing until the target temperature is achieved. Do not go below 0°C or above 40°C.
@@ -51,8 +51,8 @@ Until now, a single thermostat managed the temperature for the entire house. How
 + The n thermostat_livingroom node is responsible for regulating the living room’s temperature, with a set target of 14°C. This thermostat is identified by the name "livingroom" and publishes temperature data to the t livingroom_temperature topic.
 + The n thermostat_bedroom node is responsible for regulating the bedroom’s temperature, with a set target of 15°C. This thermostat is identified by the name "bedroom" and publishes temperature data to the t bedroom_temperature topic.
 
-1. Edit FILE-ALT params.yaml and add entries for the new nodes.
-2. Edit FILE-ALT rwa2.launch.py to only start the new nodes.
+1. Edit FILE params.yaml and add entries for the new nodes.
+2. Edit FILE rwa2.launch.py to only start the new nodes.
 3. Remap the node name and topic name for each node object.
 4. Test everything with TERMINAL ros2 launch
 
